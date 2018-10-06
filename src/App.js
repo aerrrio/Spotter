@@ -30,7 +30,6 @@ class App extends Component {
         <Header>Spotter</Header>
         <SearchBar searchYelp={ this.searchYelp } />
         <BusinessList businesses={ this.state.businesses } />
-        <p>Paragraph item. The quick fox jumped over the lazy dog.</p>
         <Footer />
       </div>
     );
