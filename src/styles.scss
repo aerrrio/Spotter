@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo|Lato');
+
+$colors: (
+  button-primary: #66ADFF,
+  button-dark: darken(#66ADFF, 10%),
+  darkgrey: #262626,
+  lightgrey: lighten(#262626, 75%),
+  white: #fff,
+  black: #000
+);
+
+$mobile: 479px;
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+      @content;
+  }
+}
+
+@function getColor($color) {
+  @return map-get($colors, $color);
+}
+
+html, body{
+  height: 100%;
+
+  @include mobile {
+    font-size: 15px;
+  }
+}
+
+body {
+  font-family: 'Lato', Arial, sans-serif;
+  background-color: getColor(lightgrey);
+
+  .search-bar {
+    width: 100%;
+    display: inline-flex;
+    justify-content: start-end;
+    flex-flow: row wrap;
+    align-items: center;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-color: getColor(lightgrey);
+    background-color: getColor(white);
+
+    @include mobile{
+      border-style: hidden;
+      flex-flow: column nowrap;
+      justify-content: center;
+    }
+    
+    .search-bar-fields, input {
+      font-size: 16px;
+      border-radius: 3px;
+      padding: 0.5rem;
+      margin: 0.2rem 1rem;
+      outline: none;
+      width: auto;
+      min-width: 200px;
+      max-width: 800px;
+      flex-grow: 1;
+
+      @include mobile {
+        font-size: 14px;
+        padding: 0.5rem;
+        margin: 0.4rem 0;
+        width: 90%
+      }
+    }
+
+    .search-bar-submit {
+      font-size: 16px;
+      text-align: center;
+      border-radius: 3px;
+      color: #fff;
+      background-color: getColor(button-primary);
+      padding: 0.5rem 1rem;
+      margin: 0.2rem;
+      width: auto;
+      cursor: pointer;
+      
+      @include mobile {
+        display: flex;
+        font-size: 14px;
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+        max-width: 45px;
+      }
+
+      &:hover {
+        background-color: getColor(button-dark);;
+      }
+    }
+  }
+
+  /*header bar*/
+  #app-title {
+    color: getColor(white);
+    background-color: getColor(darkgrey);
+    margin: 0;
+    padding: 0.8rem 1rem;
+    @include mobile {
+      font-size: 20px;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
