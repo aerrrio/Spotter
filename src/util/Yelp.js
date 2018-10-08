@@ -1,4 +1,4 @@
-const apiKey = ''
+const apiKey = '';
 
 const Yelp = function(term, location, sortBy) {
   return fetch(
@@ -10,7 +10,8 @@ const Yelp = function(term, location, sortBy) {
     return response.json()
   }).then(jsonResponse => {
     if(jsonResponse.businesses) {           
-      return jsonResponse.businesses.map(business => {
+      return jsonResponse.businesses.map(business => {    //console.log(JSON.stringify(jsonResponse));
+        console.log(business.categories);
         return { 
           id: business.id,
           imageSRC: business.image_url,
@@ -22,7 +23,8 @@ const Yelp = function(term, location, sortBy) {
           category: business.categories,
           rating: business.rating,
           reviewCount: business.review_count,
-          coordinates: business.coordinates
+          coordinates: business.coordinates,
+          phone: business.display_phone,
         }
       })
     }
