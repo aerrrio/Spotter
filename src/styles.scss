@@ -5,6 +5,7 @@ $colors: (
   button-dark: darken(#66ADFF, 10%),
   darkgrey: #262626,
   lightgrey: lighten(#262626, 75%),
+  error: #e51212,
   white: #fff,
   black: #000
 );
@@ -46,7 +47,7 @@ body {
   .search-bar-container {
     width: 100%;
     display: inline-flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-flow: row wrap;
     align-items: center;
     border-bottom-width: 2px;
@@ -80,6 +81,18 @@ body {
           width: 90%;
           margin: 0.4rem 0;
           padding: 0.5rem;
+        }
+      }
+
+      #error {
+        margin-left: 1rem;
+        display: flex;
+        flex-wrap: nowrap;
+        color: getColor(error);
+
+        @include mobile {
+          margin-top: 0.5rem;
+          margin-left: 0;
         }
       }
     }
