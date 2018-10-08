@@ -1,20 +1,51 @@
 import React, { Component } from 'react';
 
+const star = String.fromCharCode(9733);
+const dot = String.fromCharCode(8901);
+
 export class Business extends React.Component {
+  starRating(rating) {
+    switch(this.props.business.rating) {
+      case 1:
+          return <span>{star}</span>;
+      case 1.5:
+          return <span>{star}<span id="halfStar">{star}</span></span>;
+      case 2:
+          return <span>{star + star}</span>;
+      case 2.5:
+          return <span>{star + star}<span id="halfStar">{star}</span></span>;
+      case 3:
+          return <span>{star + star + star}</span>;
+      case 3.5:
+          return <span>{star + star + star}<span id="halfStar">{star}</span></span>;
+      case 4:
+          return <span>{star + star + star + star}</span>;
+      case 4.5:
+          return <span>{star + star + star + star}<span id="halfStar">{star}</span></span>;
+      case 5:
+          return <span>{star + star + star + star + star}</span>;
+    }
+  }
   render() {
     return (
       <div className="business-container">
-        <div className="image-container">
-          <img src={this.props.business.imageSRC} alt=''/>
+        <div className="business-image">
+          <img src={ this.props.business.imageSRC } alt=''/>
         </div>
-        <h2>{this.props.business.name}</h2>
-        <div className="business-details">
-            <p>{this.props.business.address}</p>
-            <p>{this.props.business.city}</p>
-            <p>{this.props.business.zipCode}</p>
-            <h3>{console.log(this.props.business.name + " " + this.props.business.category)}</h3>
-            <h3 className="rating">{this.props.business.rating}</h3>
-            <p>{this.props.business.reviewCount}</p>
+        <div className="business-info">
+            <p id="business-name">{ this.props.business.name }</p>
+            <p class="details">
+              <span>
+                { this.props.business.rating + " " }
+                { this.starRating(this.props.business.rating)}
+                { " " + dot + " "}
+                { this.props.business.reviewCount } reviews
+                </span>
+            </p>
+            <p>{ this.props.business.category[0].title }</p>
+            <p>{ this.props.business.phone }</p> 
+            <p>{ this.props.business.address }</p>
+            <p>{ this.props.business.city }, { this.props.business.state } { this.props.business.zipCode }</p>
         </div>
       </div>
     );

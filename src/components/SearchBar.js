@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-const sortByOptions = {
-  'Best Match': 'best_match',
-  'Highest Rating': 'rating',
-  'Most Reviewed': 'review_count'
-};
-
 class SearchBar extends React.Component  {
   constructor(props) {
     super(props); 
@@ -13,31 +7,12 @@ class SearchBar extends React.Component  {
       term: '',
       location: '',
       sortBy: 'best_match',
+      error: ''
     };
-    this.handleSortByChange = this.handleSortByChange.bind(this);
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-  }
-
-  renderSortByOptions() {
-    return Object.keys(sortByOptions).map(sortByOption => {
-      let sortByOptionValue = sortByOptions[sortByOption];
-      return <li onClick={this.handleSortByChange} key={sortByOptionValue}>
-        {sortByOption}
-      </li>;
-    });
-  }
-
-  getSortByClass(sortByOption) {
-    if(this.state.sortBy === sortByOption) {
-      return 'active';
-    }
-    return '';
-  }
-
-  handleSortByChange(sortByOption) {
-    this.setState({ sortBy: sortByOption.target.value });
+    this.handleEnterKey = this.handleEnterKey.bind(this);
   }
 
   handleTermChange(e) {
@@ -50,32 +25,43 @@ class SearchBar extends React.Component  {
 
   handleSearch(e) {
     if(this.state.term == '' || this.state.location == '') {
-      console.log("Please fill in search paremeters.");
+      this.setState({error: 'Please fill in both fields.'});
     } else {
+      this.setState({error: ''});
       this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
       e.preventDefault(); 
     }
   }
 
+  handleEnterKey(e) {
+    if(e.key === 'Enter') {
+      this.handleSearch(e);
+    }
+  }
+
   render() {
     return (
-      <div className="search-bar">
-        <input placeholder="I'm looking for..." onChange={ this.handleTermChange } />
-        <input placeholder="Near..." onChange={ this.handleLocationChange } />
-        <div className="search-bar-submit" onClick={ this.handleSearch }>
-          <a>Search</a>
-        </div>
+      <div className="search-bar-container">
+        <span className="search-bar-fields">
+          <input 
+            placeholder="I'm looking for..." 
+            onChange={ this.handleTermChange }
+            onKeyPress={ this.handleEnterKey } />
+          <input 
+            placeholder="Near..." 
+            onChange={ this.handleLocationChange }
+            onKeyPress={ this.handleEnterKey } 
+            />
+          <span 
+            className="search-bar-submit" 
+            onClick={ this.handleSearch }>
+              <a>Search</a>
+          </span>
+          <span id="error">{" " + this.state.error}</span>
+        </span>
       </div>
     );
   };
 }
 
 export default SearchBar;
-
-/*
-
-        <ul>
-          {this.renderSortByOptions()}
-        </ul>
-
-*/
