@@ -201,8 +201,8 @@ body .business-list .business-container .business-image img {
 
 @media (max-width: 479px) {
   body .business-list .business-container .business-image img {
-    height: 12rem;
-    width: 12rem;
+    height: 100%;
+    width: 8rem;
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
@@ -235,6 +235,7 @@ body .business-list .business-container .business-info {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    font-size: 13px;
   }
 }
 
@@ -253,6 +254,7 @@ body .business-list .business-container .business-info #business-name {
 @media (max-width: 479px) {
   body .business-list .business-container .business-info #business-name {
     text-align: center;
+    font-size: 16px;
   }
 }
 
@@ -261,6 +263,12 @@ body .business-list .business-container .business-info p {
   display: -ms-flexbox;
   display: flex;
   margin: 0.2rem 0;
+}
+
+@media (max-width: 479px) {
+  body .business-list .business-container .business-info p {
+    margin: 0.1rem 0;
+  }
 }
 
 body .business-list .business-container .business-info .details #halfStar {

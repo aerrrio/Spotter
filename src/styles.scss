@@ -160,8 +160,8 @@ body {
         border-radius: 3px;
 
         @include mobile {
-          height: 12rem;
-          width: 12rem;
+          height: 100%;
+          width: 8rem;
           display: inline-flex;
           justify-content: flex-start;
           align-self: flex-start;
@@ -179,6 +179,7 @@ body {
           flex-flow: column nowrap;
           padding: 0.5rem 1.5rem;
           align-items: center;
+          font-size: 13px;
         }
 
         #business-name {
@@ -190,12 +191,17 @@ body {
 
           @include mobile{
             text-align: center;
+            font-size: 16px;
           }
         }
 
         p {
           display: flex;
           margin: 0.2rem 0;
+          
+          @include mobile {
+            margin: 0.1rem 0;
+          }
         }
         
         .details {
