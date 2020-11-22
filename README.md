@@ -1,5 +1,5 @@
 # Spotter
-A React project. CSS written with SASS. Spotter is a Yelp clone, utilizing the Fusion API.
+A React project. CSS written with SASS. Spotter uses the Yelp Fusion API.
 
 ## Application Breakdown
 User fills in both input fields, and searches the Yelp API for businesses in an area. If either input field is empty, an error message will appear and a Yelp call will not happen. 
